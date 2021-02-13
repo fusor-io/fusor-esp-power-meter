@@ -1,0 +1,31 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Fusor Power Meter",
+		"_postman_id": "ff752cdb-441d-8984-84f7-b12cc8cd57d9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Put power meter definition",
+			"request": {
+				"url": "http://192.168.1.200:3000/definitions/sm/pm",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"o\": {\n        \"bme.hum\": {\n            \"s\": \"p\",\n            \"p\": \"a\",\n            \"f\": \"d\",\n            \"l\": 120000,\n            \"t\": 0\n        },\n        \"bme.pres_hpa\": {\n            \"s\": \"p\",\n            \"p\": \"a\",\n            \"f\": \"d\",\n            \"l\": 120000,\n            \"t\": 0\n        },\n        \"bme.temp_c\": {\n            \"s\": \"p\",\n            \"p\": \"a\",\n            \"f\": \"d\",\n            \"l\": 120000,\n            \"t\": 0\n        },\n        \"pow.w\": {\n            \"s\": \"p\",\n            \"p\": \"a\",\n            \"f\": \"d\",\n            \"l\": 10000,\n            \"t\": 0\n        },\n        \"pow.total\": {\n        \t\"s\": \"c\",\n        \t\"t\": 0.001\n        },\n        \"pow.peak\": {\n        \t\"s\": \"c\",\n        \t\"t\": 0.001\n        },\n        \"pow.off_peak\": {\n        \t\"s\": \"c\",\n        \t\"t\": 0.001\n        }\n    },\t\n\"s\":{\n  \"t\": 0,\n  \"b\": [\"pow.read\",\"display_update\"],\n  \"s\": {\n    \"bme\": {\n      \"i\": \"read\",\n      \"a\": [\"bme.init\"],\n      \"s\": {\n        \"read\": {\n          \"a\": [\"bme.read\",\"display_update\"],\n          \"r\": [\n            {\n              \"i\": { \"elapsed\": [\"bme\", 15000] },\n              \"t\": \"read\"\n            }\n          ]\n        }\n      }\n    },\n    \"disp\": {\n      \"i\": \"on\",\n      \"a\": [\"d5.attach\"],\n      \"b\": [\"d5.read\"],\n      \"s\": {\n        \"on\": {\n          \"a\": [\"display_on\"],\n          \"r\": [\n            {\n              \"i\": { \"elapsed\": [\"disp\", 20000] },\n              \"t\": \"off\"\n            },\n            {\n              \"i\": { \"eq\": [\"d5.click\", 1] },\n              \"t\": \"continue\"\n            }\n          ]\n        },\n        \"continue\": {\n          \"r\": [\n            {\n              \"i\": { \"elapsed\": [\"disp\", 0] },\n              \"t\": \"on\"\n            }\n          ]\n        },\n        \"off\": {\n          \"a\": [\"display_off\"],\n          \"r\": [\n            {\n              \"i\": { \"eq\": [\"d5.click\", 1] },\n              \"t\": \"on\"\n            }\n          ]\n        }\n      }\n    } \n  }\n}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
