@@ -26,8 +26,8 @@ See [https://www.wemos.cc/en/latest/d1/d1_mini.html]
  
 To run this node you need:
 - Running `Fusor Hub`
-- Uploaded `State Machine Definition` to `Fusor Hub`
-  Use `postman_collection.json` for that (change provided dummy IP address to yours Fusor Hub address)
+- Uploaded `State Machine Definition` to `Fusor Hub`. 
+  Use *postman_collection.json* from this repo (change provided dummy IP address to yours Fusor Hub address)
   
 ### Known issues with WeMos D1 Mini:
 
