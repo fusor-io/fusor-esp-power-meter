@@ -13,9 +13,9 @@ See [https://www.wemos.cc/en/latest/d1/d1_mini.html]
 1. select device in Arduino IDE `LOLIN (WEMOS) D1 R2 & Mini`
 2. install libraries:
   - `ArduinoJson` by Benoit Blanchor
-  - `Time.h`, see: [https://github.com/PaulStoffregen/Time]
-     Use Arduino Library Manager, look for `Time by Michael Margolis` 
-     Found under type: `Contributed`, topic: `Timing`
+  - `Time.h`, see: [https://github.com/PaulStoffregen/Time]. 
+     Use Arduino Library Manager, look for `Time by Michael Margolis`.
+     It can be found under type: `Contributed`, topic: `Timing`
   - `Fusor State Machine`: [https://github.com/fusor-io/fusor-state-machine]
   - `Fusor State Machine Plugins`: [https://github.com/fusor-io/fusor-state-machine-plugins]
   - `Fusor WiFi Configurator`: [https://github.com/fusor-io/fusor-wifi-configurator]
