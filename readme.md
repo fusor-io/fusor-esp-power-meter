@@ -28,7 +28,11 @@ To run this node you need:
 - Running `Fusor Hub`
 - Uploaded `State Machine Definition` to `Fusor Hub`. 
   Use *postman_collection.json* from this repo (change provided dummy IP address to yours Fusor Hub address)
-  
+
+### Hardware setup
+
+![Schematic](schematic.png "Schematic")
+
 ### Known issues with WeMos D1 Mini:
 
 - Failure to initialize FS (SPIFFS). 
