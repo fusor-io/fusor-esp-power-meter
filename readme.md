@@ -1,6 +1,6 @@
 ## What is it?
 
-Consumed power metering node with optional environment sensors and LCD display
+Consumed power metering node with optional environment sensors and LCD display. 
 Features network configuration by mobile phone
  
 Designed to work with Fusor Hub: [https://github.com/fusor-io/fusor-hub]
