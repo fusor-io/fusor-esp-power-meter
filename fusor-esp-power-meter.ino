@@ -51,7 +51,7 @@ void setup() {
   __debugPrinter = debugPrinter;
 #endif
  
-  Serial.begin(57600);
+  Serial.begin(1000000);
 
   delay(100);
   pinMode(D5, INPUT); // digital input for control button
