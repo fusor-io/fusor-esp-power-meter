@@ -18,24 +18,7 @@
 
 #include "display.h"
 
-void sleepFunction(unsigned long ms)
-{
-  delay(ms);
-}
-
-unsigned long getTime()
-{
-  return millis();
-}
-
-void debugPrinter(const char *message)
-{
-  Serial.print(message);
-}
-
-NodeConnector nodeConnector;
-
-StateMachineController sm = StateMachineController("pm", sleepFunction, getTime);
+NodeConnector nodeConnector("pm");
 
 // sensor for ambient temperature, humidity and pressure
 Bme280Plugin bme250Plugin = Bme280Plugin("bme", true, D2, D1);
@@ -47,10 +30,6 @@ InterruptPlugin interruptPlugin = InterruptPlugin("d5", D5);
 PowerSensorPlugin powerSensorPlugin = PowerSensorPlugin("pow", A0);
 
 void setup() {
-#ifdef SM_DEBUGGER
-  __debugPrinter = debugPrinter;
-#endif
- 
   Serial.begin(1000000);
 
   delay(100);
@@ -59,27 +38,23 @@ void setup() {
   displayInit();
   displayPrintStr("Loading...");
 
-  nodeConnector.setup(D5, false, 3000);
-  if (nodeConnector.isSmdLoaded) Serial.println(F("State Machine Definition loaded"));
-  else {
+  if (nodeConnector.setup(D5, false, 3000)) {
+    Serial.println(F("State Machine Definition loaded"));
+  } else {
     Serial.println(F("No SMD. Halt."));
     while(true) delay(100000);
   }
+  nodeConnector.sm.registerAction("display_off", displayOff);
+  nodeConnector.sm.registerAction("display_on", displayOn);
+  nodeConnector.sm.registerAction("display_update", updateDisplay);
 
-  nodeConnector.initSM(&sm);
-  Serial.println(F("State Machine created"));
-
-  sm.registerAction("display_off", displayOff);
-  sm.registerAction("display_on", displayOn);
-  sm.registerAction("display_update", updateDisplay);
-
-  sm.registerPlugin(&bme250Plugin);
-  sm.registerPlugin(&interruptPlugin);
-  sm.registerPlugin(&powerSensorPlugin);
+  nodeConnector.sm.registerPlugin(&bme250Plugin);
+  nodeConnector.sm.registerPlugin(&interruptPlugin);
+  nodeConnector.sm.registerPlugin(&powerSensorPlugin);
 
   Serial.println(F("Actions and plugins registered"));
 
-  sm.init();
+  nodeConnector.start();
   Serial.println(F("State machine initialized"));
 
   displayPrintStr("Loaded");
@@ -88,6 +63,5 @@ void setup() {
 }
 
 void loop() {
-  sm.cycle();
   nodeConnector.loop();
 }
