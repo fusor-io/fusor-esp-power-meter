@@ -20,7 +20,7 @@ See [https://www.wemos.cc/en/latest/d1/d1_mini.html]
   - `Fusor State Machine Plugins`: [https://github.com/fusor-io/fusor-state-machine-plugins]
   - `Fusor WiFi Configurator`: [https://github.com/fusor-io/fusor-wifi-configurator]
   - `Fusor Node Connector`: [https://github.com/fusor-io/fusor-node-connector]
-  - `U8g2lib` (for LCD)
+  - `U8g2` library (for LCD)
 
 ### How to run?
  
